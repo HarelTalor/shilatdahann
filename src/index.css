@@ -1,0 +1,340 @@
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+:root {
+    --font-sans: 'Heebo', sans-serif;
+    --font-serif: 'Cormorant Garamond', 'Heebo', serif;
+  }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+@layer base {
+  .theme {
+    --font-heading: var(--font-serif);
+  }
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 27 18% 24%; /* Taupe/Dark Grey */
+    --surface: 27 30% 98%;    /* Very light Nude */
+    --card: 0 0% 100%;
+    --card-foreground: 27 18% 24%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 27 18% 24%;
+    --primary: 27 53% 91%;    /* Nude #F5E6DA */
+    --primary-foreground: 27 18% 24%;
+    --secondary: 43 55% 45%;  /* Deeper Gold #B78727 */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 27 10% 96%;
+    --muted-foreground: 27 15% 45%;
+    --accent: 34 44% 69%;     /* Beige #D2B48C */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --border: 27 20% 90%;
+    --input: 27 20% 90%;
+    --ring: 43 55% 45%;       /* Deeper Gold */
+    --radius: 0rem;
+
+    /* Signature Heading Color: Soft Beige / Baza */
+    --heading: 30 25% 65%;
+  }
+
+  .text-heading {
+    color: hsl(var(--heading));
+  }
+  .dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+  }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+
+  .grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.05;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    mix-blend-mode: soft-light;
+  }
+
+  .gradient-brand {
+    background: linear-gradient(135deg, #c49696 0%, #e6c8c8 40%, #b38728 100%);
+    background-size: 200% auto;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 10px 20px -5px rgba(196, 150, 150, 0.4);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .gradient-brand:hover {
+    background-position: right center;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 15px 30px -5px rgba(196, 150, 150, 0.6);
+  }
+
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(45deg);
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-150%) rotate(45deg); }
+    100% { transform: translateX(150%) rotate(45deg); }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 1; text-shadow: 0 0 10px rgba(212,175,55,0.4); }
+    50% { opacity: 0.85; text-shadow: 0 0 25px rgba(212,175,55,0.7); }
+  }
+  .animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .bg-interesting-luxury {
+    background-color: hsl(var(--surface));
+    background-image: radial-gradient(circle at 2px 2px, hsl(var(--primary) / 0.05) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+
+  /* Premium Button Variants */
+  .btn-rose-gold {
+    background: linear-gradient(135deg, #fff5f5 0%, #e6b8b8 50%, #d4af37 100%);
+    background-size: 200% auto;
+    box-shadow: 0 10px 30px -10px rgba(230, 184, 184, 0.5);
+    transition: 0.5s;
+    border: none !important;
+  }
+  .btn-rose-gold:hover {
+    background-position: right center;
+    box-shadow: 0 15px 40px -10px rgba(230, 184, 184, 0.7);
+    transform: translateY(-2px);
+  }
+
+  .btn-metallic-gold {
+    background: linear-gradient(
+      135deg,
+      #bf953f 0%,
+      #fcf6ba 25%,
+      #b38728 50%,
+      #fbf5b7 75%,
+      #aa771c 100%
+    );
+    background-size: 200% 200%;
+    border: 1px solid rgba(191, 149, 63, 0.5) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: metallic-shine 3s linear infinite;
+    color: #1a1a1a !important;
+  }
+  @keyframes metallic-shine {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .btn-frosted-gold {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(212, 175, 55, 0.6) !important;
+    color: #d4af37 !important;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  }
+  .btn-frosted-gold:hover {
+    background: rgba(212, 175, 55, 0.1) !important;
+    border-color: #d4af37 !important;
+    transform: scale(1.02);
+  }
+
+  /* Version 2: Gold-Rich Variants */
+  .btn-split-gold {
+    background: linear-gradient(135deg, #e6b8b8 0%, #d4af37 50%, #b38728 100%);
+    background-size: 200% auto;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(179, 135, 40, 0.3);
+  }
+  .btn-split-gold:hover {
+    background-position: right center;
+    transform: translateY(-2px);
+  }
+
+  .btn-halo-gold {
+    background: #e6b8b8;
+    border: 2px solid #d4af37 !important;
+    color: #b38728 !important;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    font-weight: 800 !important;
+  }
+  .btn-halo-gold:hover {
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+    background: white;
+  }
+
+  .btn-champagne-gold {
+    background: linear-gradient(135deg, #fdf5e6 0%, #fcf6ba 50%, #d4af37 100%);
+    color: #8b6b1d !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-champagne-gold::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+    transform: rotate(45deg);
+    animation: shine-sweep 3s infinite;
+  }
+  @keyframes shine-sweep {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+  }
+
+  /* Version 3: Pink-First Luxury Variants */
+  .btn-elegant-rose {
+    background: #fffafa;
+    border: 2px solid #e6b8b8 !important;
+    color: #e6b8b8 !important;
+    box-shadow: 0 4px 15px rgba(230, 184, 184, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-elegant-rose:hover {
+    background: #e6b8b8;
+    color: white !important;
+    border-color: #d4af37 !important;
+  }
+
+  .btn-blush-glow {
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe4e1 100%);
+    color: #b38728 !important;
+    border: 1px solid rgba(230, 184, 184, 0.5) !important;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+    font-weight: 700 !important;
+  }
+  .btn-blush-glow:hover {
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+    transform: translateY(-2px);
+  }
+
+  .btn-silk-pink {
+    background: linear-gradient(135deg, #e6b8b8 0%, #fceae2 40%, #d4af37 100%);
+    background-size: 200% auto;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 10px 20px -5px rgba(230, 184, 184, 0.4);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  .btn-silk-pink:hover {
+    background-position: right center;
+    transform: scale(1.03);
+  }
+}
