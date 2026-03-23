@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { name: "ראשי", path: "/" },
@@ -34,7 +35,7 @@ export default function Header() {
           <Link to="/" className="flex items-center gap-3 group">
             <div className="relative h-12 w-12 md:h-16 md:w-16 transition-transform group-hover:scale-105 duration-300">
                <img 
-                 src="/src/assets/logo.png" 
+                 src={logo} 
                  alt="Shilat Dahan Logo" 
                  className={`w-full h-full object-contain ${scrolled ? "" : "opacity-90"}`} 
                />
